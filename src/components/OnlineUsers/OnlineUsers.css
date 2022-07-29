@@ -1,0 +1,41 @@
+.online-users {
+  order: 1;
+  flex-shrink: 0;
+  width: 250px;
+  padding: 30px 20px 30px 20px;
+  background: #fbfbfb;
+  color: var(--heading-color);
+}
+.online-users h3 {
+  text-align: right;
+  font-size: 1.2em;
+  margin-bottom: 40px;
+}
+.online-users ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.online-users li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.online-users p {
+  max-width: 8em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.8em;
+}
+.online-users span {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  background: #0ebb50;
+  border-radius: 50%;
+  text-indent: 9999px;
+  overflow: hidden;
+  white-space: nowrap;
+}

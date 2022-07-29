@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# React-Task-Management
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+這是來自 [Build Web Apps with React & Firebase](https://www.udemy.com/course/build-web-apps-with-react-firebase/) 課程的其中一項專案，主要是拿來練習 React 而做的團隊合作管理平台。
 
-## Available Scripts
+網站連結：[https://thedojosite-7a15e.web.app](https://thedojosite-7a15e.web.app/)
 
-In the project directory, you can run:
+## 網站介紹
 
-### `npm start`
+這個網站所包含的功能如下：
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 檢視任務清單
+- 顯示目前在線的 User
+- 過濾任務清單
+- 建立、刪除任務
+- 與團隊夥伴溝通（留言溝能）
+- 登入 / 註冊功能
+- 上傳自己的大頭像
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![demo](demo.gif)
 
-### `npm test`
+## 使用的技術
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React
+- react-router-dom
+- Firebase authentication
+- Firebase firestore
+- Firebase firestore storage
+- Mui
+- Custom hook
+- useContext / useReducer
 
-### `npm run build`
+## 運行方式
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+此專案使用 Firebase 作為資料庫，所以請先自行跑完相關申請流程。
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1\. 安裝專案的 dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+```
 
-### `npm run eject`
+2\. 建立 `./src/firebase/config.js` 檔案，並填入你的 Firebase 資訊：
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```js
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+const firebaseConfig = {
+  apiKey: '...',
+  authDomain: '...',
+  projectId: '...',
+  storageBucket: '...',
+  messagingSenderId: '...',
+  appId: '...'
+}
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+// init firebase
+firebase.initializeApp(firebaseConfig)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+// init services
+const db = firebase.firestore()
+const auth = firebase.auth()
+const storage = firebase.storage()
+const timestamp = firebase.firestore.Timestamp
+const filedValue = firebase.firestore.FieldValue
 
-## Learn More
+export { db, auth, timestamp, storage, filedValue }
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3\. 啟動開發環境
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm run start
+```
 
-### Code Splitting
+## 打包
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+npm run build
+```
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+之後再透過 live-sever 的方式打開 `/build/index.html` 即可

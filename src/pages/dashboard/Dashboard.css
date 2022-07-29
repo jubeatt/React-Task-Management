@@ -1,0 +1,7 @@
+.dashboard {
+  margin-bottom: 120px;
+}
+.dashboard button > a {
+  color: inherit;
+  text-decoration: none;
+}
